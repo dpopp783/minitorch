@@ -22,8 +22,9 @@ def central_difference(f: Any, *vals: Any, arg: int = 0, epsilon: float = 1e-6) 
     Returns:
         An approximation of $f'_i(x_0, \ldots, x_{n-1})$
     """
-    # TODO: Implement for Task 1.1.
-    raise NotImplementedError('Need to implement for Task 1.1')
+    f1 = f(*vals[:arg], vals[arg] + epsilon, *vals[arg + 1:])
+    f2 = f(*vals[:arg], vals[arg] - epsilon, *vals[arg + 1:])
+    return (f1 - f2) / (2 * epsilon)
 
 
 variable_count = 1
@@ -98,3 +99,6 @@ class Context:
     @property
     def saved_tensors(self) -> Tuple[Any, ...]:
         return self.saved_values
+
+if __name__ == '__main__':
+    print(central_difference(max, 3, 4, 5, arg=1))
