@@ -99,6 +99,3 @@ class Context:
     @property
     def saved_tensors(self) -> Tuple[Any, ...]:
         return self.saved_values
-
-if __name__ == '__main__':
-    print(central_difference(max, 3, 4, 5, arg=1))
