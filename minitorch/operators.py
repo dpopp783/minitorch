@@ -47,7 +47,7 @@ def max(x: float, y: float) -> float:
 
 def is_close(x: float, y: float) -> float:
     "$f(x) = |x - y| < 1e-2$"
-    return lt(abs(x-y), 1e-2)
+    return lt(abs(x - y), 1e-2)
 
 
 def sigmoid(x: float) -> float:
@@ -97,7 +97,7 @@ def log_back(x: float, d: float) -> float:
 
 def inv(x: float) -> float:
     "$f(x) = 1/x$"
-    return 1.0/x
+    return 1.0 / x
 
 
 def inv_back(x: float, d: float) -> float:
