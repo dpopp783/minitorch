@@ -134,7 +134,7 @@ class Scalar:
 
     def accumulate_derivative(self, x: Any) -> None:
         """
-        Add `val` to the the derivative accumulated on this variable.
+        Add `val` to the derivative accumulated on this variable.
         Should only be called during autodifferentiation on leaf variables.
 
         Args:
@@ -163,8 +163,8 @@ class Scalar:
         assert h.last_fn is not None
         assert h.ctx is not None
 
-        # TODO: Implement for Task 1.3.
-        raise NotImplementedError('Need to implement for Task 1.3')
+        for i, inp in enumerate(h.inputs):
+            yield inp, h.last_fn._backward(h.ctx, d_output)[i]
 
     def backward(self, d_output: Optional[float] = None) -> None:
         """
