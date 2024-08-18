@@ -64,7 +64,7 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
     """
     sorted_vars = []
     visited = set()
-    
+
     def visit(var: Variable):
         if var.unique_id in visited:
             return
