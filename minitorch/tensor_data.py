@@ -82,8 +82,10 @@ def broadcast_index(
     Returns:
         None
     """
-    # TODO: Implement for Task 2.2.
-    raise NotImplementedError('Need to implement for Task 2.2')
+    dims_big = len(big_shape)
+    dims_small = len(shape)
+    for i in range(dims_small):
+        out_index[i] = min(shape[i] - 1, big_index[i + dims_big - dims_small])
 
 
 def shape_broadcast(shape1: UserShape, shape2: UserShape) -> UserShape:
@@ -100,8 +102,37 @@ def shape_broadcast(shape1: UserShape, shape2: UserShape) -> UserShape:
     Raises:
         IndexingError : if cannot broadcast
     """
-    # TODO: Implement for Task 2.2.
-    raise NotImplementedError('Need to implement for Task 2.2')
+    dims1 = len(shape1)
+    dims2 = len(shape2)
+    if dims1 > dims2:
+        out_shape = list(shape1[:dims1 - dims2])
+        larger_shape = shape1
+        smaller_shape = shape2
+        diff = dims1 - dims2
+    elif dims2 > dims1:
+        out_shape = list(shape2[:dims2 - dims1])
+        larger_shape = shape2
+        smaller_shape = shape1
+        diff = dims2 - dims1
+    else:
+        out_shape = []
+        larger_shape = shape1
+        smaller_shape = shape2
+        diff = 0
+
+    for i in range(len(smaller_shape)):
+        dim1 = smaller_shape[i]
+        dim2 = larger_shape[i + diff]
+        if dim1 == dim2:
+            out_shape.append(dim1)
+        elif dim1 == 1:
+            out_shape.append(dim2)
+        elif dim2 == 1:
+            out_shape.append(dim1)
+        else:
+            raise IndexingError(f"Cannot broadcast between dimensions {dim1} and {dim2}")
+
+    return tuple(out_shape)
 
 
 def strides_from_shape(shape: UserShape) -> UserStrides:
