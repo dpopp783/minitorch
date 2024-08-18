@@ -101,7 +101,8 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
         for par, der in var.chain_rule(cum_derivs[var.unique_id]):
             if par.unique_id not in cum_derivs.keys():
                 cum_derivs[par.unique_id] = 0.0
-            cum_derivs[par.unique_id] += der
+            if der:
+                cum_derivs[par.unique_id] += der
 
 
 @dataclass
