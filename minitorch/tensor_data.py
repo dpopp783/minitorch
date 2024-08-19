@@ -63,6 +63,22 @@ def to_index(ordinal: int, shape: Shape, out_index: OutIndex) -> None:
         ordinal -= out_index[i] * dim
 
 
+def to_index_with_strides(ordinal: int, strides: Strides, out_index: OutIndex) -> None:
+    """
+    Convert an `ordinal` to an index from the tensor's strides.
+    This is the inverse of `index_to_position`.
+
+    Args:
+        ordinal: ordinal position to convert.
+        strides : tensor strides.
+        out_index : return index corresponding to position.
+
+    """
+    for i, dim in enumerate(strides):
+        out_index[i] = ordinal // dim
+        ordinal -= out_index[i] * dim
+
+
 def broadcast_index(
     big_index: Index, big_shape: Shape, shape: Shape, out_index: OutIndex
 ) -> None:
@@ -84,6 +100,8 @@ def broadcast_index(
     """
     dims_big = len(big_shape)
     dims_small = len(shape)
+    assert dims_big >= dims_small
+
     for i in range(dims_small):
         out_index[i] = min(shape[i] - 1, big_index[i + dims_big - dims_small])
 
