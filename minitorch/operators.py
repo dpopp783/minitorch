@@ -68,6 +68,10 @@ def sigmoid(x: float) -> float:
     return exp(x) / (1.0 + exp(x))
 
 
+def sigmoid_back(x: float, d: float):
+    return d * sigmoid(x) * (1 - sigmoid(x))
+
+
 def relu(x: float) -> float:
     """
     $f(x) =$ x if x is greater than 0, else 0
@@ -89,6 +93,9 @@ def exp(x: float) -> float:
     "$f(x) = e^{x}$"
     return math.exp(x)
 
+
+def exp_back(x: float, d: float) -> float:
+    return d * exp(x)
 
 def log_back(x: float, d: float) -> float:
     r"If $f = log$ as above, compute $d \times f'(x)$"
