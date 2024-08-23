@@ -24,9 +24,9 @@ I built an autodifferentiation engine with scalars, implementing forward and bac
 
 While it is not the most efficient implementation, this is enough to train a simple neural network. Here are some examples of classifiers trained based on this simple scalar-based implementation.
 
-![Simple Dataset](../images/ScalarNetwork_SimpleDataset_48.png)
+![Simple Dataset](images/ScalarNetwork_SimpleDataset_48.png)
 
-![Xor Dataset](../images/ScalarNetwork_XorDataset_145.png)
+![Xor Dataset](images/ScalarNetwork_XorDataset_145.png)
 
 To train networks based on this scalar implementation, navigate to the `project` folder and run
 
